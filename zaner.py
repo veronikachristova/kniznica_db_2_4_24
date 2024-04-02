@@ -14,5 +14,6 @@ class Zaner:
         cursor.execute("INSERT INTO genres (name) VALUES (%s)", (nazov,))
         print("Zaner vlozeny do databazy.")
 
+
     def __str__(self):
         return f"---ZANER---\nID Zanru: {self.id}\nNazov: {self.name}"
