@@ -16,5 +16,12 @@ class Author:
         bio = input()
         cursor.execute("INSERT INTO authors (name, bio) VALUES (%s, %s)", (meno, bio))
 
+    @staticmethod
+    def zobraz_autorov(cursor):
+        cursor.execute("SELECT * FROM authors")
+        authors = cursor.fetchall()
+        for author in authors:
+            print(Author.from_db(author))
+
     def __str__(self):
         return f"---AUTHOR---\nID Autora: {self.id}\nMeno: {self.name}\nBio: {self.bio}"

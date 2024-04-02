@@ -1,14 +1,14 @@
 import psycopg2
-from autor import Author
-from zaner import Zaner
-from kniha import Kniha
+from author import Author
+from book import Book
+from genre import Genre
 
 conn = psycopg2.connect(
-    dbname='b4l1o2iguxktujhgmzv1',
-    user='uhkelmgkhpkwcyjdl3qd',
-    password='ZIuTMMFceJbOGxBmDJGxtBRfTrRVSs',
-    host='b4l1o2iguxktujhgmzv1-postgresql.services.clever-cloud.com',
-    port=50013
+    dbname='bva2e94t1hjabargw4qm',
+    user='uoxfcfn6z1ax4uvdhs8d',
+    password='BqNof4FiTkz7VmAFcWYqzxjR5vMqRv',
+    host='bva2e94t1hjabargw4qm-postgresql.services.clever-cloud.com',
+    port='50013'
 )
 
 cursor = conn.cursor()
@@ -25,16 +25,18 @@ def aplikacia():
         if choice == "1":
             Author.vloz_do_db(cursor)
             conn.commit()
-            print("Pridat autora")
         elif choice == "2":
-            Zaner.vloz_do_db(cursor)
+            Genre.vloz_do_db(cursor)
             conn.commit()
-            print("Pridat zaner")
         elif choice == "3":
-            Kniha.vloz_do_db(cursor)  # Call the vloz_do_db method from Kniha class
+            Author.zobraz_autorov(cursor)
+            authorID = input("ID Authora: ")
+            Genre.zobraz_zanre(cursor)
+            genreID = input("ID zanru: ")
+            Book.vloz_do_db(cursor, authorID, genreID)
             conn.commit()
-            print("Pridat knihu")
         else:
             print("Neplatny vstup")
 
 aplikacia()
+
